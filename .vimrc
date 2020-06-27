@@ -1,10 +1,8 @@
-" open NERDTree by default
-autocmd VimEnter * NERDTree
-" set focus to document
-autocmd VimEnter * wincmd p
-
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * wincmd p
 
 let NERDTreeShowHidden=1
+
 set number
 set tabstop=2
 set expandtab
@@ -20,10 +18,18 @@ set noerrorbells
 set undodir=~/.vim/undodir
 set undofile
 set colorcolumn=80
+set textwidth=80
 set showmatch
 set foldenable
 set foldlevelstart=10
 set foldnestmax=10
+set relativenumber
+
+" VimWiki prerequisites
+set nocompatible
+filetype plugin on
+syntax on
+" end VimWiki prerequisites
 
 
 call plug#begin('~/.vim/plugged')
@@ -36,15 +42,28 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'haishanh/night-owl.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'kien/ctrlp.vim'
+Plug 'alvan/vim-closetag'
+Plug 'evanleck/vim-svelte'
+Plug 'preservim/nerdcommenter'
+Plug 'vimwiki/vimwiki'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
-
 colorscheme night-owl 
-
 
 if executable('rg')
   let g:rg_derive_root='true'
 endif
 
-" disallow git directory and gitignore definitions from autocomplete
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" ctrl+c and ctrl+v to copy/paste to/from system keyboard
+vnoremap <C-c> "*y :let @+=@*<CR>
+map <C-v> "+p
+
+
+" Toggle NerdTREE with the F4 key
+nnoremap <F4> :NERDTreeToggle<CR>
+
+" List Buffers and Select 
+nnoremap <F5> :buffers<CR>:buffer<Space>
