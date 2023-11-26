@@ -33,11 +33,6 @@ alias home='cd ~/'
 alias sites='cd ~/Sites/'
 alias proj='cd ~/Projects'
 
-
-# init rbenv and ssh-agent
-eval "$(rbenv init -)"
-eval "$(ssh-agent -s)"
-
 # enable nvm and bash completion
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh"  ] && . "/usr/local/opt/nvm/nvm.sh"
