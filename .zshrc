@@ -1,43 +1,44 @@
-autoload -U promptinit; promptinit
-prompt spaceship
+# Lines configured by zsh-newuser-install
 
-# Git settings
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+HISTFILE=~/.histfile
+HISTSIZE=5000
+SAVEHIST=1000
+setopt autocd
+unsetopt beep
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/benjamin/.zshrc'
 
-# Generic aliases
-alias ll='ls -lahFG'
-alias zedit='sudo vim ~/.zshrc'
-alias zrefresh='source ~/.zshrc'
-alias python=python3                                  # default to python3
-alias pip=pip3
-alias vedit='vim ~/.vimrc'
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
 
-
-# Git aliases
-alias gits='git status'
-alias gs='git status'
-alias ga='git add'
-alias gaa='git add -A'
-alias gr='git rm'
-alias gra='git rm -A'
-alias gbd='git branch -D'
-alias gpush='git push'
-alias gpo='git push origin'
-alias gpull='git pull'
-alias grecent="git branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:short)%(color:reset))'"
-alias gch='git checkout '
-alias gc='git commit -m'
-alias gm='git merge'
-
-alias home='cd ~/'
-alias sites='cd ~/Sites/'
-alias proj='cd ~/Projects'
-
-# enable nvm and bash completion
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh"  ] && . "/usr/local/opt/nvm/nvm.sh"
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
-export PATH="$(python3 -m site --user-base)/bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# Load nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# Load nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Load aliases
+source "$HOME/.aliases"
+
+# search history with ctrl+r
+bindkey '^R' history-incremental-search-backward
+
+# Auto-switch Node version when entering directory with .nvmrc
+cd() {
+  builtin cd "$@"
+  if [[ -f .nvmrc ]]; then
+    nvm use > /dev/null
+  fi
+}
+cd .
+
+fzv() {
+  local file
+  file=$(fzf --preview 'bat --style=numbers --color=always {} 2>/dev/null || cat {} 2>/dev/null | head -20' --preview-window=right:60%:wrap)
+  [[ -n "$file" ]] && vim "$file"
+}
+
+PS1='%B%F{green}[%f%F{yellow}%n%f%F{green}@%f%F{blue}%m%f%F{green}]%f %F{#777777}%~%f %F{green}>%f%b '
