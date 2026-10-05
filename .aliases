@@ -1,0 +1,97 @@
+# Generic aliases
+alias ll='ls -alF --color'
+alias la='ls -A --color'
+alias l='ls -CF --color'
+alias ...='cd ../..'
+alias lc='wc -l'
+alias quit='exit'
+
+# dotfiles
+alias zedit='vim ~/.zshrc'
+alias zrefresh='source ~/.zshrc'
+alias vedit='vim ~/.config/nvim/init.lua'
+alias aedit='vim ~/.aliases'
+alias arefresh='source ~/.aliases'
+alias acat='cat ~/.aliases'
+alias tedit='vim ~/.tmux.conf'
+
+# Remaps
+alias python='/usr/bin/python3'
+alias bat='batcat'
+alias vim='nvim'
+alias v='vim'
+alias lg='lazygit'
+alias ghs='cd ~/projects/drupal-regional'
+alias proj='cd ~/projects'
+alias skills='cd ~/skills/'
+alias ehsc='cd ~/projects/ehs/next-app'
+alias ehss='cd ~/projects/ehs/drupal-headless'
+alias win='cd /mnt/c/Users/BTWASI'
+alias cfg='cd ~/.config/'
+alias agents='cd ~/.agents'
+
+# DDEV Aliases
+alias down='ddev stop'
+alias up='ddev start'
+alias dd='ddev'
+alias ddrush='ddev drush'
+alias dcom='ddev composer'
+
+alias dreset='ddev restart'
+alias dstat='ddev status'
+alias drb='ddev rebuild -y'
+alias drball='ddev rebuild -y && ddev rebuild @bellin.local -y'
+alias dlist='ddev drush list'
+
+alias bhs-cim='ddev import @bellin.local'
+alias ghs-cim='ddev import'
+alias all-cim='ddev import @bellin.local && ddev import'
+
+alias ghs-cron='ddev drush cron'
+alias bhs-cron='ddev drush cron @bellin.local'
+
+alias bhs-uli='ddev drush user:login -l http://bellin.ddev.site --mail=benjamin.wasilewski@bellin.org'
+alias ghs-uli='ddev drush user:login -l http://ghs.ddev.site --mail=benjamin.wasilewski@bellin.org'
+alias ehs-uli='ddev drush user:login -l https://headless.ddev.site'
+
+alias ghs-uli-prod='ddev drush user:login -l http://gundersenhealth.org --mail=benjamin.wasilewski@bellin.org'
+alias bhs-uli-prod='ddev drush user:login -l http://bellin.org --mail=benjamin.wasilewski@bellin.org'
+
+alias ghs-uli-dev='ddev drush user:login -l http://gundersendev.prod.acquia-sites.com --mail=benjamin.wasilewski@bellin.org'
+alias bhs-uli-dev='ddev drush user:login -l http://dev.bellin.org --mail=benjamin.wasilewski@bellin.org'
+alias ehs-uli-dev='ddev drush user:login -l http://dev-content.emplifyhealth.org --mail=benjamin.wasilewski@bellin.org'
+
+alias ghs-pull-db-prod='ddev pull-remote-db -site gundersen -env prod -y'
+alias ghs-pull-db-test='ddev pull-remote-db -site gundersen -env test -y'
+alias bhs-pull-db-prod='ddev pull-remote-db -site bellin -env prod -y && ddev rebuild @bellin.local -y'
+alias all-pull-db-dev='ddev pull-remote-db -site gundersen -env dev -y && ddev pull-remote-db -site bellin -env dev -y'
+
+alias make-design='ddev make/design'
+alias make-theme='ddev make/theme'
+
+# Git aliases
+alias ga='git add'
+alias gaa='git add -A'
+alias gb='git branch'
+alias gbd='git branch -D'
+alias gc='git commit -m'
+alias gch='git checkout '
+alias gl='git log'
+alias gm='git merge'
+alias gp='git pull'
+alias gpsh='git push'
+alias gpsho='git push origin'
+alias gr='git recent'
+alias gra='git rm -A'
+alias gre="git branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:short)%(color:reset))'"
+alias gs='git status'
+alias gu='git reset --soft HEAD~1'
+
+# Azure
+alias azprs="az repos pr list --status active --query \"[?reviewers[?uniqueName=='benjamin.wasilewski@emplifyhealth.org']].{PR_ID:pullRequestId,Title:title,Author:createdBy.displayName,Status:status}\" -o table"
+
+alias prs="az repos pr list --creator benjamin.wasilewski@emplifyhealth.org --status all --output table"
+
+# AI
+alias oc='opencode'
+alias occ='opencode --continue'
