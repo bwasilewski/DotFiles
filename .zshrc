@@ -15,6 +15,8 @@ setopt INTERACTIVE_COMMENTS
 unsetopt beep
 bindkey -v
 
+PS1='%B%F{green}[%f%F{yellow}%n%f%F{green}@%f%F{blue}%m%f%F{green}]%f %F{#777777}%~%f %F{green}>%f%b '
+
 zstyle ':compinstall' filename '/home/benjamin/.zshrc'
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
